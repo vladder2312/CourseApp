@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ru.surfstudio.standard.f_splash.SplashActivityView">
+    tools:context="ru.surfstudio.standard.f_splash.SplashActivityView"
+    android:background="#23213F">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:srcCompat="@android:mipmap/sym_def_app_icon" />
+        app:srcCompat="@drawable/ic_surf_edu" />
 </FrameLayout>
