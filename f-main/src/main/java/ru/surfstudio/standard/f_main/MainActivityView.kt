@@ -41,16 +41,16 @@ class MainActivityView : BaseRxActivityView() {
 
     fun bind() {
 
-        loginText.textChanges() bindTo { bindModel.loginTextChanged.accept(loginText.text.toString()) }
-        passwordText.textChanges() bindTo { bindModel.passwordTextChanged.accept(passwordText.text.toString()) }
+        loginText.textChanges() bindTo { bindModel.loginChangedAction.accept(loginText.text.toString()) }
+        passwordText.textChanges() bindTo { bindModel.passwordChangedAction.accept(passwordText.text.toString()) }
         loginButton.clicks() bindTo {
-            bindModel.loginButtonClicked.accept()
+            bindModel.authorizeAction.accept(loginText.text.toString() to passwordText.text.toString())
             showLoading()
         }
 
-        bindModel.loginError bindTo { showLoginError(it) }
-        bindModel.passwordError bindTo { showPasswordError(it) }
-        bindModel.authorized bindTo {
+        bindModel.loginErrorState bindTo { showLoginError(it) }
+        bindModel.passwordErrorState bindTo { showPasswordError(it) }
+        bindModel.authorizedState bindTo {
             hideLoading()
             if (it) toNextScreen()
         }

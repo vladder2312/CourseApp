@@ -15,11 +15,11 @@ class MainBindModel @Inject constructor() : BindModel {
     var loginValidated = false
     var passwordValidated = false
 
-    val loginTextChanged = Action<String>()
-    val passwordTextChanged = Action<String>()
-    val loginButtonClicked = Action<Unit>()
+    val loginChangedAction = Action<String>()
+    val passwordChangedAction = Action<String>()
+    val authorizeAction = Action<Pair<String, String>>()
 
-    val loginError = State<String>()
-    val passwordError = State<String>()
-    val authorized = State<Boolean>()
+    val loginErrorState = State<String>()
+    val passwordErrorState = State<String>()
+    val authorizedState = State<Boolean>()
 }
