@@ -16,7 +16,8 @@ import retrofit2.http.POST
 /**
  * Api для авторизации
  */
-interface AuthApi {
+interface AuthApi2
+{
 
     @POST(LOGIN_BY_PHONE_PATH)
     fun requestCode(@Body phoneRequest: LoginByPhoneRequest): Single<KeyResponse>

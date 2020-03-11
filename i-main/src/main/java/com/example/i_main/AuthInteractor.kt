@@ -1,10 +1,12 @@
 package com.example.i_main
 
 import io.reactivex.Single
+import ru.surfstudio.android.dagger.scope.PerApplication
 import ru.surfstudio.standard.domain.login.LogoutErrorInfo
 import ru.surfstudio.standard.domain.login.UserInfo
 import javax.inject.Inject
 
+@PerApplication
 class AuthInteractor @Inject constructor(
         val authRepository: AuthRepository,
         val userRepository: UserRepository
