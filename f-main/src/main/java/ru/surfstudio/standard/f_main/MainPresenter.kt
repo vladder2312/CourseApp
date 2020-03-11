@@ -1,6 +1,6 @@
 package ru.surfstudio.standard.f_main
 
-import ru.surfstudio.android.core.mvp.presenter.BasePresenter
+import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
@@ -10,13 +10,14 @@ import javax.inject.Inject
  */
 @PerScreen
 class MainPresenter @Inject constructor(
+        bindModel: MainBindModel,
         basePresenterDependency: BasePresenterDependency
-) : BasePresenter<MainActivityView>(basePresenterDependency) {
+) : BaseRxPresenter(basePresenterDependency) {
 
-    private val sm = MainScreenModel()
+    private val sm = MainBindModel()
 
     override fun onLoad(viewRecreated: Boolean) {
         super.onLoad(viewRecreated)
-        view.render(sm)
+
     }
 }
