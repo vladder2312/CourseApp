@@ -12,7 +12,6 @@ dependencies {
     qaImplementation project(":f-debug")
 
     implementation project(":i-push-notification")
-    implementation project(":i-auth")
     implementation project(":i-main")
     implementation project(":i-network")
     implementation project(":i-token")
