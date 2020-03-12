@@ -18,4 +18,4 @@ include ":app",
 
 apply from: 'android-standard/androidStandardSettings.gradle'
 apply from: 'buildCache.gradle'
-include ':i-main'
+include ':i-authorization'
