@@ -1,17 +1,20 @@
-package ru.surfstudio.standard.f_main
+package ru.surfstudio.standard.f_authorization
 
 import com.example.i_main.AuthInteractor
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.dagger.scope.PerScreen
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
  * Презентер главного экрана
  */
 @PerScreen
-class MainPresenter @Inject constructor(
-        private val bindModel: MainBindModel,
+class AuthPresenter @Inject constructor(
+        private val bindModel: AuthBindModel,
         private val authInteractor: AuthInteractor,
         basePresenterDependency: BasePresenterDependency
 ) : BaseRxPresenter(basePresenterDependency) {
@@ -30,7 +33,14 @@ class MainPresenter @Inject constructor(
         bindModel.authorizeAction bindTo {
             if(bindModel.loginValidated && bindModel.passwordValidated){
                 authInteractor.authorize(it.first, it.second)
-                bindModel.authorizedState.accept(true)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .timeout(5, TimeUnit.SECONDS)
+                        .subscribe({
+                            bindModel.authorizedState.accept(true)
+                        },{
+                            bindModel.authorizedState.accept(false)
+                        })
             } else {
                 bindModel.authorizedState.accept(false)
             }

@@ -33,9 +33,9 @@ dependencies {
     implementation project(":base")
     implementation project(":base_feature")
     implementation project(":i-push-notification")
-    implementation project(":f-auth")
-    implementation project(":f-main")
+    implementation project(':f-authorization')
     implementation project(":f-splash")
+    implementation project(":f-main")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 

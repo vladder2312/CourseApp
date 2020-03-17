@@ -9,8 +9,7 @@ include ":app",
         ":i-session",
         ":i-token",
         ":i-push-notification",
-        ":f-auth",
-        ":f-main",
+        ':f-authorization',
         ":f-debug",
         ":f-splash",
         ":f-debug-no-op",
@@ -19,3 +18,4 @@ include ":app",
 apply from: 'android-standard/androidStandardSettings.gradle'
 apply from: 'buildCache.gradle'
 include ':i-authorization'
+include ':f-main'

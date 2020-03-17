@@ -9,6 +9,7 @@ import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.android.logger.Logger
 import ru.surfstudio.android.utilktx.ktx.text.EMPTY_STRING
 import ru.surfstudio.standard.i_initialization.InitializeAppInteractor
+import ru.surfstudio.standard.ui.navigation.AuthActivityRoute
 import ru.surfstudio.standard.ui.navigation.MainActivityRoute
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -26,7 +27,7 @@ internal class SplashPresenter @Inject constructor(
 ) : BasePresenter<SplashActivityView>(basePresenterDependency) {
 
     private val nextRoute: ActivityRoute
-        get() = MainActivityRoute()
+        get() = AuthActivityRoute()
 
 
     override fun onFirstLoad() {

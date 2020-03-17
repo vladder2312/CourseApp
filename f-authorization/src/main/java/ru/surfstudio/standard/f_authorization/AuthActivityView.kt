@@ -1,35 +1,36 @@
-package ru.surfstudio.standard.f_main
+package ru.surfstudio.standard.f_authorization
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import androidx.annotation.LayoutRes
+import com.example.f_main.MainActivityView
 import com.jakewharton.rxbinding2.view.clicks
 import com.jakewharton.rxbinding2.widget.textChanges
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_authorization.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxActivityView
-import ru.surfstudio.android.template.f_main.R
-import ru.surfstudio.standard.f_main.di.MainScreenConfigurator
+import ru.surfstudio.android.template.f_authorization.R
+import ru.surfstudio.standard.f_authorization.di.AuthScreenConfigurator
 import javax.inject.Inject
 
 /**
  * Вью главного экрана
  */
-class MainActivityView : BaseRxActivityView() {
+class AuthActivityView : BaseRxActivityView() {
 
     @Inject
-    lateinit var bindModel: MainBindModel
+    lateinit var bindModel: AuthBindModel
 
     @Inject
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: AuthPresenter
 
-    override fun createConfigurator() = MainScreenConfigurator(intent)
+    override fun createConfigurator() = AuthScreenConfigurator(intent)
 
-    override fun getScreenName(): String = "MainActivityView"
+    override fun getScreenName(): String = "AuthActivityView"
 
     @LayoutRes
-    override fun getContentView(): Int = R.layout.activity_main
+    override fun getContentView(): Int = R.layout.activity_authorization
 
     override fun onCreate(
             savedInstanceState: Bundle?,
@@ -75,6 +76,6 @@ class MainActivityView : BaseRxActivityView() {
     }
 
     fun toNextScreen(){
-        startActivity(Intent(this,MainActivityView::class.java))
+        startActivity(Intent(this, MainActivityView::class.java))
     }
 }

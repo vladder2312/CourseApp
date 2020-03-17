@@ -1,4 +1,4 @@
-package ru.surfstudio.standard.f_main
+package ru.surfstudio.standard.f_authorization
 
 import ru.surfstudio.android.core.mvp.binding.rx.relation.mvp.Action
 import ru.surfstudio.android.core.mvp.binding.rx.relation.mvp.State
@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Модель главного экрана
  */
 @PerScreen
-class MainBindModel @Inject constructor() : BindModel {
+class AuthBindModel @Inject constructor() : BindModel {
 
     var loginValidated = false
     var passwordValidated = false

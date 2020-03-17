@@ -1,4 +1,4 @@
-package ru.surfstudio.standard.f_main.di
+package ru.surfstudio.standard.f_authorization.di
 
 import android.content.Intent
 import dagger.Component
@@ -6,41 +6,41 @@ import dagger.Module
 import dagger.Provides
 import ru.surfstudio.android.core.mvp.configurator.BindableScreenComponent
 import ru.surfstudio.android.dagger.scope.PerScreen
-import ru.surfstudio.standard.f_main.MainActivityView
-import ru.surfstudio.standard.f_main.MainPresenter
+import ru.surfstudio.standard.f_authorization.AuthActivityView
+import ru.surfstudio.standard.f_authorization.AuthPresenter
 import ru.surfstudio.standard.ui.activity.di.ActivityComponent
 import ru.surfstudio.standard.ui.activity.di.ActivityScreenConfigurator
-import ru.surfstudio.standard.ui.navigation.MainActivityRoute
+import ru.surfstudio.standard.ui.navigation.AuthActivityRoute
 import ru.surfstudio.standard.ui.screen.ActivityScreenModule
 import ru.surfstudio.standard.ui.screen.CustomScreenModule
 
 /**
- * Конфигуратор главного экрана
+ * Конфигуратор экрана авторизации
  */
-class MainScreenConfigurator(intent: Intent) : ActivityScreenConfigurator(intent) {
+class AuthScreenConfigurator(intent: Intent) : ActivityScreenConfigurator(intent) {
 
     @PerScreen
     @Component(dependencies = [ActivityComponent::class],
-            modules = [ActivityScreenModule::class, MainScreenModule::class])
-    interface MainScreenComponent
-        : BindableScreenComponent<MainActivityView>
+            modules = [ActivityScreenModule::class, AuthScreenModule::class])
+    interface AuthScreenComponent
+        : BindableScreenComponent<AuthActivityView>
 
     @Module
-    internal class MainScreenModule(route: MainActivityRoute) : CustomScreenModule<MainActivityRoute>(route) {
+    internal class AuthScreenModule(route: AuthActivityRoute) : CustomScreenModule<AuthActivityRoute>(route) {
 
         @Provides
         @PerScreen
-        fun providePresenter(presenter: MainPresenter) = Any()
+        fun providePresenter(presenter: AuthPresenter) = Any()
     }
 
     @Suppress("DEPRECATION")
     override fun createScreenComponent(parentComponent: ActivityComponent,
                                        activityScreenModule: ActivityScreenModule,
-                                       intent: Intent): MainScreenComponent {
-        return DaggerMainScreenConfigurator_MainScreenComponent.builder()
+                                       intent: Intent): AuthScreenComponent {
+        return DaggerAuthScreenConfigurator_AuthScreenComponent.builder()
                 .activityComponent(parentComponent)
                 .activityScreenModule(activityScreenModule)
-                .mainScreenModule(MainScreenModule(MainActivityRoute()))
+                .authScreenModule(AuthScreenModule(AuthActivityRoute()))
                 .build()
     }
 }
