@@ -21,7 +21,6 @@ class AuthActivityView : BaseRxActivityView() {
 
     @Inject
     lateinit var bindModel: AuthBindModel
-
     @Inject
     lateinit var presenter: AuthPresenter
 

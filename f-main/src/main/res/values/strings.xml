@@ -3,4 +3,8 @@
     <string name="main_title">Популярные мемы</string>
     <string name="search_hint">Поиск</string>
     <string name="load_error">Не удалось загрузить ленту\nОбновите экран или попробуйте позже.</string>
+    <string name="nickname">LittleHallCat</string>
+    <string name="create_photo">Сделать фото</string>
+    <string name="from_gallery">Из галереи</string>
+    <string name="create">Создать</string>
 </resources>
