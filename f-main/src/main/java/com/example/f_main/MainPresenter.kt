@@ -2,10 +2,10 @@ package com.example.f_main
 
 
 import android.app.FragmentTransaction.TRANSIT_NONE
+import com.example.f_main.feed.FeedFragmentRoute
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.core.ui.navigation.fragment.FragmentNavigator
-import ru.surfstudio.standard.ui.navigation.FeedFragmentRoute
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
