@@ -12,7 +12,7 @@ import ru.surfstudio.standard.common.utils.ActivityUtils.checkIfActivityIsVisibl
 import ru.surfstudio.standard.common.utils.ActivityUtils.launchActivity
 import ru.surfstudio.standard.common.utils.IdlingUtils.registerIdlingResource
 import ru.surfstudio.standard.common.utils.IdlingUtils.unregisterIdlingResource
-import ru.surfstudio.standard.f_main.MainActivityView
+import ru.surfstudio.standard.f_authorization.AuthActivityView
 import ru.surfstudio.standard.f_splash.SplashActivityView
 import ru.surfstudio.standard.f_splash.TRANSITION_DELAY_MS
 
@@ -39,12 +39,12 @@ class TemplateTest {
         val idlingResource = ElapsedTimeIdlingResource(TRANSITION_DELAY_MS)
         registerIdlingResource(idlingResource)
 
-        checkIfActivityIsVisible(MainActivityView::class.java)
+        checkIfActivityIsVisible(AuthActivityView::class.java)
         unregisterIdlingResource(idlingResource)
     }
 
     @Test
     fun testMainActivity() {
-        launchActivity(MainActivityView::class.java)
+        launchActivity(AuthActivityView::class.java)
     }
 }

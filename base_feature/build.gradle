@@ -12,7 +12,7 @@ dependencies {
     qaImplementation project(":f-debug")
 
     implementation project(":i-push-notification")
-    implementation project(":i-auth")
+    implementation project(':i-authorization')
     implementation project(":i-network")
     implementation project(":i-token")
     implementation project(":i-initialization")

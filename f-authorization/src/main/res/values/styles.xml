@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="textField">
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:background">@drawable/text_field</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textColorLink">@color/colorBlue</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/colorTextFieldGrayText</item>
+    </style>
+    <style name="button">
+        <item name="android:layout_height">55dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:background">@drawable/main_button</item>
+        <item name="android:topRightRadius">4dp</item>
+        <item name="android:topLeftRadius">4dp</item>
+    </style>
+</resources>
