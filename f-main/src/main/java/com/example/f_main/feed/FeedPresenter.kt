@@ -1,8 +1,7 @@
-package com.example.f_feed
+package com.example.f_main.feed
 
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
-import ru.surfstudio.android.core.ui.navigation.fragment.FragmentNavigator
 import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
 
