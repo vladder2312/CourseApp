@@ -15,7 +15,7 @@ import ru.surfstudio.standard.f_authorization.di.AuthScreenConfigurator
 import javax.inject.Inject
 
 /**
- * Вью главного экрана
+ * Вью экрана авторизации
  */
 class AuthActivityView : BaseRxActivityView() {
 
@@ -49,8 +49,8 @@ class AuthActivityView : BaseRxActivityView() {
             showLoading()
         }
 
-        bindModel.loginErrorState bindTo { showLoginError(it) }
-        bindModel.passwordErrorState bindTo { showPasswordError(it) }
+        bindModel.loginErrorState bindTo ::showLoginError
+        bindModel.passwordErrorState bindTo ::showPasswordError
         bindModel.authorizedState bindTo {
             hideLoading()
             if (it) toNextScreen()

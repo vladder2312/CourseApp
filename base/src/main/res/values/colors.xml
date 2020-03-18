@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFF</color>
+    <color name="colorPrimary">#312F51</color>
+    <color name="colorPrimaryDark">#23213F</color>
+    <color name="colorAccent">#1EF0D7</color>
+    <color name="colorBackground">#23213F</color>
+    <color name="colorBackgroundLighter">#2E2C49</color>
+    <color name="colorBackgroundDarker">#12102B</color>
+    <color name="colorTextFieldGrayText">#9E9DAA</color>
+    <color name="colorBlue">#1EEFD6</color>
+    <color name="colorSnackBar">#FF575D</color>
+    <color name="disabledButton">#4D1EF0D7</color>
+</resources>

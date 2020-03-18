@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title=""
+        android:id="@+id/action_feed"
+        android:icon="@drawable/feed_icon"
+        />
+    <item
+        android:title=""
+        android:id="@+id/action_addMeme"
+        android:icon="@drawable/icon_add_meme"
+        />
+    <item
+        android:title=""
+        android:id="@+id/action_profile"
+        android:icon="@drawable/icon_profile"
+        />
+</menu>
