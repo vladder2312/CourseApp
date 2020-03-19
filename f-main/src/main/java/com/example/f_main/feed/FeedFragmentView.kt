@@ -10,9 +10,11 @@ import com.example.f_main.feed.di.FeedController
 import com.example.f_main.feed.di.FeedScreenConfigurator
 import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
+import ru.surfstudio.android.core.mvp.loadstate.LoadStateInterface
 import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.standard.domain.feed.Meme
+import ru.surfstudio.standard.ui.placeholder.LoadState
 import javax.inject.Inject
 
 @PerScreen
@@ -41,9 +43,13 @@ class FeedFragmentView : BaseRxFragmentView(){
     }
 
     private fun bind(){
+        bindModel.refreshFeedAction.accept()
+
         swipeRefresh.setOnRefreshListener {
             bindModel.refreshFeedAction.accept()
         }
+
+        bindModel.placeholderState bindTo ::setLoadingState
         bindModel.memesState bindTo ::setMemes
     }
 
@@ -55,5 +61,9 @@ class FeedFragmentView : BaseRxFragmentView(){
     private fun setMemes(memes : List<Meme>){
         adapter.setData(memes, feedController)
         swipeRefresh.isRefreshing=false
+    }
+
+    private fun setLoadingState(state: LoadStateInterface){
+        placeholder.render(state)
     }
 }
