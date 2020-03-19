@@ -2,8 +2,6 @@ package com.example.f_main.feed
 
 import android.annotation.SuppressLint
 import com.example.i_memes.MemesInteractor
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.dagger.scope.PerScreen
@@ -23,16 +21,15 @@ class FeedPresenter @Inject constructor(
         bindModel.refreshFeedAction bindTo ::loadMemes
     }
 
-    @SuppressLint("CheckResult")
-    fun loadMemes(){
-        memesInteractor.getMemes()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .timeout(8, TimeUnit.SECONDS)
-                .subscribe( {
+    private fun loadMemes() {
+        subscribeIoHandleError(
+                memesInteractor.getMemes().timeout(8, TimeUnit.SECONDS),
+                {
                     bindModel.memesState.accept(it)
-                },{
+                },
+                {
                     bindModel.failedLoadMemesState.accept(it.localizedMessage)
-                })
+                }
+        )
     }
 }
