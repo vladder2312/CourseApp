@@ -1,4 +1,4 @@
-package com.example.i_feed
+package com.example.i_memes
 
 import io.reactivex.Single
 import ru.surfstudio.android.dagger.scope.PerApplication

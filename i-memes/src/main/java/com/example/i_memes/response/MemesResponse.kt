@@ -1,4 +1,4 @@
-package com.example.i_feed.response
+package com.example.i_memes.response
 
 import ru.surfstudio.standard.domain.feed.Meme
 import ru.surfstudio.standard.i_network.network.Transformable

@@ -1,6 +1,6 @@
-package com.example.i_feed
+package com.example.i_memes
 
-import com.example.i_feed.response.MemesResponse
+import com.example.i_memes.response.MemesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 

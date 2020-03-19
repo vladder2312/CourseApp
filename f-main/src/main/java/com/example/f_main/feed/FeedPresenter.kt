@@ -1,17 +1,16 @@
 package com.example.f_main.feed
 
 import android.annotation.SuppressLint
-import com.example.i_feed.MemesInteractor
-import com.example.i_feed.MemesRepository
+import com.example.i_memes.MemesInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.dagger.scope.PerScreen
-import ru.surfstudio.standard.domain.feed.Meme
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+@PerScreen
 class FeedPresenter @Inject constructor(
         private val bindModel: FeedBindModel,
         private val memesInteractor: MemesInteractor,
