@@ -23,7 +23,7 @@ class FeedController(
 
         override fun bind(meme: Meme) {
             ImageLoader.with(itemView.context)
-                    .url(meme.photoUrl)
+                    .url(meme.photoUtl)
                     .into(image)
             title.text = meme.title
         }

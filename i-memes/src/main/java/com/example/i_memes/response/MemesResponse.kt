@@ -1,18 +1,19 @@
 package com.example.i_memes.response
 
+import com.google.gson.annotations.SerializedName
 import ru.surfstudio.standard.domain.feed.Meme
 import ru.surfstudio.standard.i_network.network.Transformable
 
 data class MemesResponse(
-        val createdDate: Int,
-        val description: String,
-        val id: String,
-        val isFavorite: Boolean,
-        val photoUrl: String,
-        val title: String
+        @SerializedName("id") val id: String,
+        @SerializedName("createdDate") val createdDate: Int,
+        @SerializedName("description") val description: String,
+        @SerializedName("isFavorite") val isFavorite: Boolean,
+        @SerializedName("photoUtl") val photoUtl: String,
+        @SerializedName("title") val title: String
 ) : Transformable<Meme> {
 
     override fun transform(): Meme {
-        return Meme(id, createdDate, description, isFavorite, photoUrl, title)
+        return Meme(id, createdDate, description, isFavorite, photoUtl, title)
     }
 }
