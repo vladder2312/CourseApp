@@ -54,5 +54,6 @@ class FeedFragmentView : BaseRxFragmentView(){
 
     private fun setMemes(memes : List<Meme>){
         adapter.setData(memes, feedController)
+        swipeRefresh.isRefreshing=false
     }
 }
