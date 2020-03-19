@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @PerApplication
 class MemesRepository @Inject constructor(
-        val memesApi: MemesApi
+        private val memesApi: MemesApi
 ) : BaseNetworkService() {
 
     fun getMemes() : Single<List<Meme>> =

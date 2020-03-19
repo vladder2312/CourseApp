@@ -41,6 +41,9 @@ class FeedFragmentView : BaseRxFragmentView(){
     }
 
     private fun bind(){
+        swipeRefresh.setOnRefreshListener {
+            bindModel.refreshFeedAction.accept()
+        }
         bindModel.memesState bindTo ::setMemes
     }
 
