@@ -5,6 +5,6 @@ data class Meme(
         val createdDate: Int,
         val description: String,
         val isFavorite: Boolean,
-        val photoUrl: String,
+        val photoUtl: String,
         val title: String
 )

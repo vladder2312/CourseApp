@@ -4,6 +4,7 @@ import dagger.Component
 import ru.surfstudio.android.dagger.scope.PerApplication
 import ru.surfstudio.standard.application.auth.di.AuthModule
 import ru.surfstudio.standard.application.cache.di.CacheModule
+import ru.surfstudio.standard.application.memes.di.MemesModule
 import ru.surfstudio.standard.application.migration.di.MigrationModule
 import ru.surfstudio.standard.application.network.di.EtagModule
 import ru.surfstudio.standard.application.network.di.NetworkModule
@@ -19,6 +20,7 @@ import ru.surfstudio.standard.application.storage.di.SharedPrefModule
     MigrationModule::class,
     SharedPrefModule::class,
     AuthModule::class,
+    MemesModule::class,
     CacheModule::class,
     EtagModule::class,
     NetworkModule::class,
