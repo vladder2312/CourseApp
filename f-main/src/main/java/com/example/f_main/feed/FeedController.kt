@@ -20,6 +20,7 @@ class FeedController(
 
         private val image : ImageView = itemView.findViewById(R.id.imageMeme)
         private val title : TextView = itemView.findViewById(R.id.titleMeme)
+        private val like : ImageView = itemView.findViewById(R.id.likeMeme)
         private lateinit var meme : Meme
 
         init{
@@ -32,6 +33,9 @@ class FeedController(
                     .url(data.photoUtl)
                     .into(image)
             title.text = data.title
+            if(meme.isFavorite){
+                like.setImageResource(R.drawable.icon_like_filled)
+            }
         }
     }
 

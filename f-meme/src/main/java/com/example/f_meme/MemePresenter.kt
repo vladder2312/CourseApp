@@ -2,8 +2,10 @@ package com.example.f_meme
 
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
+import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
 
+@PerScreen
 class MemePresenter @Inject constructor(
         private val bindModel: MemeBindModel,
         basePresenterDependency: BasePresenterDependency
@@ -12,6 +14,11 @@ class MemePresenter @Inject constructor(
     override fun onLoad(viewRecreated: Boolean) {
         super.onLoad(viewRecreated)
 
+        bindModel.likeClickedAction bindTo { changeLikeState() }
+    }
 
+    private fun changeLikeState() {
+        bindModel.liked = !bindModel.liked
+        bindModel.likeState.accept()
     }
 }

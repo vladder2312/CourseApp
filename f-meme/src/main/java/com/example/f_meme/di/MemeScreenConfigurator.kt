@@ -19,7 +19,7 @@ class MemeScreenConfigurator(intent: Intent) : ActivityScreenConfigurator(intent
     @PerScreen
     @Component(dependencies = [ActivityComponent::class],
             modules = [ActivityScreenModule::class, MemeScreenModule::class])
-    interface MainScreenComponent
+    interface MemeScreenComponent
         : BindableScreenComponent<MemeActivityView>
 
     @Module
@@ -33,7 +33,7 @@ class MemeScreenConfigurator(intent: Intent) : ActivityScreenConfigurator(intent
     @Suppress("DEPRECATION")
     override fun createScreenComponent(parentComponent: ActivityComponent,
                                        activityScreenModule: ActivityScreenModule,
-                                       intent: Intent): MainScreenComponent {
+                                       intent: Intent): MemeScreenComponent {
         return DaggerMemeScreenConfigurator_MemeScreenComponent.builder()
                 .activityComponent(parentComponent)
                 .activityScreenModule(activityScreenModule)
