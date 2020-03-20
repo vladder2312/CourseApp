@@ -1,4 +1,4 @@
-package com.example.f_main.feed.di
+package com.example.f_main.feed
 
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -13,19 +13,29 @@ import ru.surfstudio.standard.domain.feed.Meme
  * Контроллер для списка мемов
  */
 class FeedController(
-        //private val onClickListener: (Meme) -> Unit
+        private val onClickListener: (Meme) -> Unit
 ) : BindableItemController<Meme, FeedController.FeedHolder>() {
 
     inner class FeedHolder(parent: ViewGroup) : BindableViewHolder<Meme>(parent, R.layout.item_meme) {
 
         private val image : ImageView = itemView.findViewById(R.id.imageMeme)
         private val title : TextView = itemView.findViewById(R.id.titleMeme)
+        private val like : ImageView = itemView.findViewById(R.id.likeMeme)
+        private lateinit var meme : Meme
 
-        override fun bind(meme: Meme) {
+        init{
+            itemView.setOnClickListener { onClickListener(meme) }
+        }
+
+        override fun bind(data: Meme) {
+            meme = data
             ImageLoader.with(itemView.context)
-                    .url(meme.photoUtl)
+                    .url(data.photoUtl)
                     .into(image)
-            title.text = meme.title
+            title.text = data.title
+            if(meme.isFavorite){
+                like.setImageResource(R.drawable.icon_like_filled)
+            }
         }
     }
 
