@@ -6,14 +6,12 @@ import ru.surfstudio.android.template.i_network.BuildConfig
  * URL всех серверных запросов
  */
 
-//todo определить проектные url и path
-
 const val BASE_API_URL = BuildConfig.BASE_URL
 
 const val TEST_API_URL = "https://demo3161256.mockable.io"
 
-const val USER_LOGOUT_PATH = "/logout"
+const val USER_LOGIN_PATH = "auth/login"
 
-const val GET_TOKEN_PATH = "/connect/token"
+const val USER_LOGOUT_PATH = "auth/logout"
 
-const val LOGIN_BY_PHONE_PATH = "/login/phone"
+const val MEMES_GET_PATH = "/memes"

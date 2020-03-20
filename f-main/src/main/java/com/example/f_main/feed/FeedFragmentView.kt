@@ -1,20 +1,20 @@
 package com.example.f_main.feed
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.f_main.R
-import com.example.f_main.feed.di.FeedController
 import com.example.f_main.feed.di.FeedScreenConfigurator
+import com.example.f_meme.MemeActivityView
 import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
 import ru.surfstudio.android.core.mvp.loadstate.LoadStateInterface
 import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.standard.domain.feed.Meme
-import ru.surfstudio.standard.ui.placeholder.LoadState
 import javax.inject.Inject
 
 @PerScreen
@@ -25,7 +25,7 @@ class FeedFragmentView : BaseRxFragmentView(){
     @Inject
     lateinit var presenter: FeedPresenter
     private val adapter = EasyAdapter()
-    private val feedController = FeedController()
+    private val feedController = FeedController { showMemeActivity(it) }
 
     override fun getScreenName() = "FeedFragmentView"
 
@@ -65,5 +65,16 @@ class FeedFragmentView : BaseRxFragmentView(){
 
     private fun setLoadingState(state: LoadStateInterface){
         placeholder.render(state)
+    }
+
+    private fun showMemeActivity(meme: Meme){
+        val intent = Intent(context, MemeActivityView::class.java)
+        intent.putExtra("id",meme.id)
+        intent.putExtra("title",meme.title)
+        intent.putExtra("description",meme.description)
+        intent.putExtra("imageUtl",meme.photoUtl)
+        intent.putExtra("isFavourite",meme.isFavorite)
+        intent.putExtra("createdDate", meme.createdDate)
+        startActivity(intent)
     }
 }
