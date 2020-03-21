@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.f_main.R
 import com.example.f_main.feed.di.FeedScreenConfigurator
-import com.example.f_meme.MemeActivityView
 import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
 import ru.surfstudio.android.core.mvp.loadstate.LoadStateInterface
@@ -18,21 +17,28 @@ import ru.surfstudio.standard.domain.feed.Meme
 import javax.inject.Inject
 
 @PerScreen
-class FeedFragmentView : BaseRxFragmentView(){
+class FeedFragmentView : BaseRxFragmentView() {
 
     @Inject
     lateinit var bindModel: FeedBindModel
+
     @Inject
     lateinit var presenter: FeedPresenter
     private val adapter = EasyAdapter()
-    private val feedController = FeedController { showMemeActivity(it) }
+    private val feedController = FeedController(
+            {
+                bindModel.openMemeAction.accept(it)
+            },
+            {
+                bindModel.shareMemeAction.accept(it)
+            })
 
     override fun getScreenName() = "FeedFragmentView"
 
     override fun createConfigurator() = FeedScreenConfigurator(Bundle.EMPTY)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_feed,container,false)
+        return inflater.inflate(R.layout.fragment_feed, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?, viewRecreated: Boolean) {
@@ -42,7 +48,7 @@ class FeedFragmentView : BaseRxFragmentView(){
         bind()
     }
 
-    private fun bind(){
+    private fun bind() {
         bindModel.refreshFeedAction.accept()
 
         swipeRefresh.setOnRefreshListener {
@@ -53,28 +59,17 @@ class FeedFragmentView : BaseRxFragmentView(){
         bindModel.memesState bindTo ::setMemes
     }
 
-    private fun initResycler(){
+    private fun initResycler() {
         feedRecycler.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         feedRecycler.adapter = adapter
     }
 
-    private fun setMemes(memes : List<Meme>){
+    private fun setMemes(memes: List<Meme>) {
         adapter.setData(memes, feedController)
-        swipeRefresh.isRefreshing=false
+        swipeRefresh.isRefreshing = false
     }
 
-    private fun setLoadingState(state: LoadStateInterface){
+    private fun setLoadingState(state: LoadStateInterface) {
         placeholder.render(state)
-    }
-
-    private fun showMemeActivity(meme: Meme){
-        val intent = Intent(context, MemeActivityView::class.java)
-        intent.putExtra("id",meme.id)
-        intent.putExtra("title",meme.title)
-        intent.putExtra("description",meme.description)
-        intent.putExtra("imageUtl",meme.photoUtl)
-        intent.putExtra("isFavourite",meme.isFavorite)
-        intent.putExtra("createdDate", meme.createdDate)
-        startActivity(intent)
     }
 }
