@@ -26,7 +26,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorBackgroundLighter"
                 android:src="@drawable/icon_close"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/authorNick"
@@ -51,16 +52,18 @@
                 android:src="@drawable/avatar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/close_meme_btn"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/share_meme_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
+                android:padding="20dp"
                 android:background="@color/colorBackgroundLighter"
                 android:src="@drawable/icon_share"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -98,7 +101,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/dateFullMeme"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleFullMeme" />
+                app:layout_constraintTop_toBottomOf="@+id/titleFullMeme"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/dateFullMeme"
@@ -118,7 +122,8 @@
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageFullMeme"
-                app:srcCompat="@drawable/icon_like" />
+                app:srcCompat="@drawable/icon_like"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/descriptionFullMeme"

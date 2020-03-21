@@ -14,6 +14,7 @@ class MemeActivityView : BaseRxActivityView() {
 
     @Inject
     lateinit var presenter: MemePresenter
+
     @Inject
     lateinit var bindModel: MemeBindModel
 
@@ -29,7 +30,7 @@ class MemeActivityView : BaseRxActivityView() {
         bind()
     }
 
-    private fun bind(){
+    private fun bind() {
         like_meme_btn.clicks() bindTo { bindModel.likeAction.accept() }
         share_meme_btn.clicks() bindTo { bindModel.shareAction.accept() }
         close_meme_btn.clicks() bindTo { this.finish() }
@@ -38,15 +39,15 @@ class MemeActivityView : BaseRxActivityView() {
         bindModel.likeState bindTo ::changeLikeImage
     }
 
-    private fun changeLikeImage(){
-        if(bindModel.liked){
+    private fun changeLikeImage() {
+        if (bindModel.liked) {
             like_meme_btn.setImageResource(R.drawable.icon_like_filled)
         } else {
             like_meme_btn.setImageResource(R.drawable.icon_like)
         }
     }
 
-    private fun showMeme(meme : Meme){
+    private fun showMeme(meme: Meme) {
         titleFullMeme.text = meme.title
         descriptionFullMeme.text = meme.description
         dateFullMeme.text = getTimeAgo(meme.createdDate)
@@ -54,7 +55,7 @@ class MemeActivityView : BaseRxActivityView() {
                 .url(meme.photoUtl)
                 .into(imageFullMeme)
 
-        if(meme.isFavorite) changeLikeImage()
+        if (meme.isFavorite) changeLikeImage()
     }
 
     private fun getTimeAgo(time: Long): String? {

@@ -7,6 +7,7 @@ import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.core.ui.navigation.activity.navigator.ActivityNavigator
 import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.standard.domain.feed.Meme
+import ru.surfstudio.standard.ui.navigation.ShareRoute
 import ru.surfstudio.standard.ui.placeholder.LoadState
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -25,6 +26,7 @@ class FeedPresenter @Inject constructor(
         bindModel.placeholderState.accept(LoadState.TRANSPARENT_LOADING)
 
         bindModel.refreshFeedAction bindTo ::loadMemes
+        bindModel.shareMemeAction bindTo ::shareMeme
         bindModel.openMemeAction bindTo { openMeme(it) }
     }
 
@@ -43,4 +45,8 @@ class FeedPresenter @Inject constructor(
     }
 
     private fun openMeme(meme: Meme) = activityNavigator.start(MemeActivityRoute(meme))
+
+    private fun shareMeme(meme: Meme) {
+        activityNavigator.start(ShareRoute("${meme.title}\n${meme.description}"))
+    }
 }
