@@ -1,6 +1,7 @@
 package com.example.f_meme.di
 
 import android.content.Intent
+import com.example.f_meme.MemeActivityRoute
 import com.example.f_meme.MemeActivityView
 import com.example.f_meme.MemePresenter
 import dagger.Component
@@ -10,7 +11,6 @@ import ru.surfstudio.android.core.mvp.configurator.BindableScreenComponent
 import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.standard.ui.activity.di.ActivityComponent
 import ru.surfstudio.standard.ui.activity.di.ActivityScreenConfigurator
-import ru.surfstudio.standard.ui.navigation.MemeActivityRoute
 import ru.surfstudio.standard.ui.screen.ActivityScreenModule
 import ru.surfstudio.standard.ui.screen.CustomScreenModule
 
@@ -37,7 +37,7 @@ class MemeScreenConfigurator(intent: Intent) : ActivityScreenConfigurator(intent
         return DaggerMemeScreenConfigurator_MemeScreenComponent.builder()
                 .activityComponent(parentComponent)
                 .activityScreenModule(activityScreenModule)
-                .memeScreenModule(MemeScreenModule(MemeActivityRoute()))
+                .memeScreenModule(MemeScreenModule(MemeActivityRoute(intent)))
                 .build()
     }
 }

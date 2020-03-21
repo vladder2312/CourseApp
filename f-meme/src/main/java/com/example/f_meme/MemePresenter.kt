@@ -8,12 +8,14 @@ import javax.inject.Inject
 @PerScreen
 class MemePresenter @Inject constructor(
         private val bindModel: MemeBindModel,
+        private val route: MemeActivityRoute,
         basePresenterDependency: BasePresenterDependency
 ) : BaseRxPresenter(basePresenterDependency) {
 
     override fun onLoad(viewRecreated: Boolean) {
         super.onLoad(viewRecreated)
 
+        bindModel.memeState.accept(route.meme)
         bindModel.likeClickedAction bindTo { changeLikeState() }
     }
 

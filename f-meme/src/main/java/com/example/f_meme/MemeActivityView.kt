@@ -1,15 +1,13 @@
 package com.example.f_meme
 
-import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.view.View
 import com.example.f_meme.di.MemeScreenConfigurator
 import com.jakewharton.rxbinding2.view.clicks
 import kotlinx.android.synthetic.main.activity_meme.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxActivityView
 import ru.surfstudio.android.imageloader.ImageLoader
+import ru.surfstudio.standard.domain.feed.Meme
 import javax.inject.Inject
 
 class MemeActivityView : BaseRxActivityView() {
@@ -28,18 +26,7 @@ class MemeActivityView : BaseRxActivityView() {
             persistentState: PersistableBundle?,
             viewRecreated: Boolean
     ) {
-        loadMeme()
         bind()
-        if(intent.getBooleanExtra("isFavourite", false)) bindModel.likeClickedAction.accept()
-    }
-
-    private fun loadMeme(){
-        titleFullMeme.text = intent.getStringExtra("title")
-        descriptionFullMeme.text = intent.getStringExtra("description")
-        dateFullMeme.text = getTimeAgo(intent.getLongExtra("createdDate",0))
-        ImageLoader.with(applicationContext)
-                .url(intent.getStringExtra("imageUtl"))
-                .into(imageFullMeme)
     }
 
     private fun bind(){
@@ -47,7 +34,8 @@ class MemeActivityView : BaseRxActivityView() {
         share_meme_btn.clicks() bindTo { bindModel.shareClickedAction.accept() }
         close_meme_btn.clicks() bindTo { this.finish() }
 
-        bindModel.likeState bindTo { changeLikeImage() }
+        bindModel.memeState bindTo ::showMeme
+        bindModel.likeState bindTo ::changeLikeImage
     }
 
     private fun changeLikeImage(){
@@ -56,6 +44,17 @@ class MemeActivityView : BaseRxActivityView() {
         } else {
             like_meme_btn.setImageResource(R.drawable.icon_like)
         }
+    }
+
+    private fun showMeme(meme : Meme){
+        titleFullMeme.text = meme.title
+        descriptionFullMeme.text = meme.description
+        dateFullMeme.text = getTimeAgo(meme.createdDate)
+        ImageLoader.with(applicationContext)
+                .url(meme.photoUtl)
+                .into(imageFullMeme)
+
+        if(meme.isFavorite) changeLikeImage()
     }
 
     private fun getTimeAgo(time: Long): String? {

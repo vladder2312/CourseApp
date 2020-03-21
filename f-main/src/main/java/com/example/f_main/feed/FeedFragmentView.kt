@@ -25,7 +25,7 @@ class FeedFragmentView : BaseRxFragmentView(){
     @Inject
     lateinit var presenter: FeedPresenter
     private val adapter = EasyAdapter()
-    private val feedController = FeedController { showMemeActivity(it) }
+    private val feedController = FeedController { bindModel.openMemeAction.accept(it) }
 
     override fun getScreenName() = "FeedFragmentView"
 
@@ -65,16 +65,5 @@ class FeedFragmentView : BaseRxFragmentView(){
 
     private fun setLoadingState(state: LoadStateInterface){
         placeholder.render(state)
-    }
-
-    private fun showMemeActivity(meme: Meme){
-        val intent = Intent(context, MemeActivityView::class.java)
-        intent.putExtra("id",meme.id)
-        intent.putExtra("title",meme.title)
-        intent.putExtra("description",meme.description)
-        intent.putExtra("imageUtl",meme.photoUtl)
-        intent.putExtra("isFavourite",meme.isFavorite)
-        intent.putExtra("createdDate", meme.createdDate)
-        startActivity(intent)
     }
 }

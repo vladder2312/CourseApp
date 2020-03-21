@@ -24,7 +24,7 @@ class FeedController(
         private lateinit var meme : Meme
 
         init{
-            itemView.setOnClickListener { onClickListener(meme) }
+            image.setOnClickListener { onClickListener(meme) }
         }
 
         override fun bind(data: Meme) {

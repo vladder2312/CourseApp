@@ -1,5 +1,7 @@
 package ru.surfstudio.standard.domain.feed
 
+import java.io.Serializable
+
 data class Meme(
         val id: String,
         val createdDate: Long,
@@ -7,4 +9,4 @@ data class Meme(
         val isFavorite: Boolean,
         val photoUtl: String,
         val title: String
-)
+) : Serializable
