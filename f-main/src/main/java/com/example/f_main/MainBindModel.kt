@@ -8,7 +8,7 @@ import javax.inject.Inject
 @PerScreen
 class MainBindModel @Inject constructor() : BindModel {
 
-    val feedClickedAction = Action<Unit>()
-    val addMemeClickedAction = Action<Unit>()
-    val profileClickedAction = Action<Unit>()
+    val showFeedAction = Action<Unit>()
+    val showAddMemeAction = Action<Unit>()
+    val showProfileAction = Action<Unit>()
 }

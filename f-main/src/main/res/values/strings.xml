@@ -7,4 +7,6 @@
     <string name="create_photo">Сделать фото</string>
     <string name="from_gallery">Из галереи</string>
     <string name="create">Создать</string>
+    <string name="meme_description_hint">Текст</string>
+    <string name="meme_title_hint">Заголовок</string>
 </resources>

@@ -5,14 +5,19 @@ import android.os.PersistableBundle
 import android.view.MenuItem
 import androidx.annotation.LayoutRes
 import com.example.f_main.di.MainScreenConfigurator
+import kotlinx.android.synthetic.main.activity_main.*
 import ru.surfstudio.android.core.ui.FragmentContainer
 import javax.inject.Inject
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxActivityView
 
+/**
+ * Главный экран
+ * */
 class MainActivityView : BaseRxActivityView(), FragmentContainer {
 
     @Inject
     lateinit var bindModel: MainBindModel
+
     @Inject
     lateinit var presenter: MainPresenter
 
@@ -26,22 +31,20 @@ class MainActivityView : BaseRxActivityView(), FragmentContainer {
             persistentState: PersistableBundle?,
             viewRecreated: Boolean
     ) {
-        bindModel.feedClickedAction.accept()
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.action_feed -> {
-                bindModel.feedClickedAction.accept()
+        bindModel.showFeedAction.accept()
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.action_feed -> {
+                    bindModel.showFeedAction.accept()
+                }
+                R.id.action_addMeme -> {
+                    bindModel.showAddMemeAction.accept()
+                }
+                R.id.action_profile -> {
+                    bindModel.showFeedAction.accept()
+                }
             }
-            R.id.action_addMeme -> {
-                bindModel.addMemeClickedAction.accept()
-            }
-            R.id.action_profile -> {
-                bindModel.feedClickedAction.accept()
-            }
+            true
         }
-        return super.onOptionsItemSelected(item)
     }
 }

@@ -2,25 +2,39 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
-    <androidx.appcompat.widget.Toolbar android:id="@+id/toolbar"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:layout_height="56dp"
+        android:background="@color/colorBackgroundLighter"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/icon_close"
+        app:title=""
         app:titleTextColor="@android:color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
+            android:layout_height="56dp">
 
+            <ImageView
+                android:id="@+id/close_add_meme_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:src="@drawable/icon_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+            
             <Button
                 android:id="@+id/button_create_meme"
                 android:layout_width="wrap_content"
@@ -34,6 +48,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
@@ -44,7 +60,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:hint="Заголовок"
+        android:hint="@string/meme_title_hint"
         android:inputType="text"
         android:maxLength="140"
         android:singleLine="true"
@@ -52,7 +68,8 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/addMeme_text"
@@ -61,14 +78,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:hint="Текст"
+        android:hint="@string/meme_description_hint"
         android:inputType="text"
         android:maxLength="1000"
         android:textColorHint="#80FFFFFF"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addMeme_title" />
+        app:layout_constraintTop_toBottomOf="@+id/addMeme_title"
+        tools:ignore="Autofill" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -80,21 +98,24 @@
             android:id="@+id/addMeme_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/example"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/addmeme_delete"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:visibility="invisible"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
             android:src="@drawable/close_withbg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -107,5 +128,6 @@
         android:layout_marginBottom="16dp"
         android:src="@drawable/icon_add_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
