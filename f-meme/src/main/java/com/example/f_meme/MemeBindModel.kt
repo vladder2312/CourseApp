@@ -12,8 +12,8 @@ class MemeBindModel @Inject constructor() : BindModel {
 
     var liked = false
 
-    val shareClickedAction = Action<Unit>()
-    val likeClickedAction = Action<Unit>()
+    val shareAction = Action<Unit>()
+    val likeAction = Action<Unit>()
 
     val likeState = State<Unit>()
     val memeState = State<Meme>()

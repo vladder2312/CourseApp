@@ -30,8 +30,8 @@ class MemeActivityView : BaseRxActivityView() {
     }
 
     private fun bind(){
-        like_meme_btn.clicks() bindTo { bindModel.likeClickedAction.accept() }
-        share_meme_btn.clicks() bindTo { bindModel.shareClickedAction.accept() }
+        like_meme_btn.clicks() bindTo { bindModel.likeAction.accept() }
+        share_meme_btn.clicks() bindTo { bindModel.shareAction.accept() }
         close_meme_btn.clicks() bindTo { this.finish() }
 
         bindModel.memeState bindTo ::showMeme
@@ -63,17 +63,17 @@ class MemeActivityView : BaseRxActivityView() {
         val HOUR_MILLIS = 60 * MINUTE_MILLIS
         val DAY_MILLIS = 24 * HOUR_MILLIS
 
-        var time = time
-        if (time < 1000000000000L) {
-            time *= 1000
+        var convertedTime = time
+        if (convertedTime < 1000000000000L) {
+            convertedTime *= 1000
         }
 
         val now = System.currentTimeMillis()
-        if (time > now || time <= 0) {
+        if (convertedTime > now || convertedTime <= 0) {
             return null
         }
 
-        val diff = now - time
+        val diff = now - convertedTime
         return when {
             diff < MINUTE_MILLIS -> " только что"
             diff < 2 * MINUTE_MILLIS -> " минуты назад"
