@@ -1,21 +1,20 @@
 package com.example.f_meme
 
-import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.view.View
 import com.example.f_meme.di.MemeScreenConfigurator
 import com.jakewharton.rxbinding2.view.clicks
 import kotlinx.android.synthetic.main.activity_meme.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxActivityView
 import ru.surfstudio.android.imageloader.ImageLoader
+import ru.surfstudio.standard.domain.feed.Meme
 import javax.inject.Inject
 
 class MemeActivityView : BaseRxActivityView() {
 
     @Inject
     lateinit var presenter: MemePresenter
+
     @Inject
     lateinit var bindModel: MemeBindModel
 
@@ -28,34 +27,35 @@ class MemeActivityView : BaseRxActivityView() {
             persistentState: PersistableBundle?,
             viewRecreated: Boolean
     ) {
-        loadMeme()
         bind()
-        if(intent.getBooleanExtra("isFavourite", false)) bindModel.likeClickedAction.accept()
     }
 
-    private fun loadMeme(){
-        titleFullMeme.text = intent.getStringExtra("title")
-        descriptionFullMeme.text = intent.getStringExtra("description")
-        dateFullMeme.text = getTimeAgo(intent.getLongExtra("createdDate",0))
-        ImageLoader.with(applicationContext)
-                .url(intent.getStringExtra("imageUtl"))
-                .into(imageFullMeme)
-    }
-
-    private fun bind(){
-        like_meme_btn.clicks() bindTo { bindModel.likeClickedAction.accept() }
-        share_meme_btn.clicks() bindTo { bindModel.shareClickedAction.accept() }
+    private fun bind() {
+        like_meme_btn.clicks() bindTo { bindModel.likeAction.accept() }
+        share_meme_btn.clicks() bindTo { bindModel.shareAction.accept() }
         close_meme_btn.clicks() bindTo { this.finish() }
 
-        bindModel.likeState bindTo { changeLikeImage() }
+        bindModel.memeState bindTo ::showMeme
+        bindModel.likeState bindTo ::changeLikeImage
     }
 
-    private fun changeLikeImage(){
-        if(bindModel.liked){
+    private fun changeLikeImage() {
+        if (bindModel.liked) {
             like_meme_btn.setImageResource(R.drawable.icon_like_filled)
         } else {
             like_meme_btn.setImageResource(R.drawable.icon_like)
         }
+    }
+
+    private fun showMeme(meme: Meme) {
+        titleFullMeme.text = meme.title
+        descriptionFullMeme.text = meme.description
+        dateFullMeme.text = getTimeAgo(meme.createdDate)
+        ImageLoader.with(applicationContext)
+                .url(meme.photoUtl)
+                .into(imageFullMeme)
+
+        if (meme.isFavorite) changeLikeImage()
     }
 
     private fun getTimeAgo(time: Long): String? {
@@ -64,17 +64,17 @@ class MemeActivityView : BaseRxActivityView() {
         val HOUR_MILLIS = 60 * MINUTE_MILLIS
         val DAY_MILLIS = 24 * HOUR_MILLIS
 
-        var time = time
-        if (time < 1000000000000L) {
-            time *= 1000
+        var convertedTime = time
+        if (convertedTime < 1000000000000L) {
+            convertedTime *= 1000
         }
 
         val now = System.currentTimeMillis()
-        if (time > now || time <= 0) {
+        if (convertedTime > now || convertedTime <= 0) {
             return null
         }
 
-        val diff = now - time
+        val diff = now - convertedTime
         return when {
             diff < MINUTE_MILLIS -> " только что"
             diff < 2 * MINUTE_MILLIS -> " минуты назад"

@@ -12,6 +12,8 @@ import javax.inject.Inject
 class FeedBindModel @Inject constructor() : BindModel {
 
     val refreshFeedAction = Action<Unit>()
+    val openMemeAction = Action<Meme>()
+    val shareMemeAction = Action<Meme>()
 
     val memesState = State<List<Meme>>(listOf())
     val failedLoadMemesState = State<String>()
