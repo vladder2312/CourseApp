@@ -21,6 +21,8 @@ import ru.surfstudio.android.message.DefaultMessageController
 import ru.surfstudio.android.message.MessageController
 import ru.surfstudio.android.mvp.dialog.navigation.navigator.DialogNavigator
 import ru.surfstudio.android.mvp.dialog.navigation.navigator.DialogNavigatorForFragment
+import ru.surfstudio.android.picturechooser.PicturePermissionChecker
+import ru.surfstudio.android.picturechooser.PictureProvider
 import ru.surfstudio.android.shared.pref.NO_BACKUP_SHARED_PREF
 import ru.surfstudio.android.template.base_feature.BuildConfig
 import ru.surfstudio.standard.ui.error.ErrorHandlerModule
@@ -105,6 +107,21 @@ class FragmentScreenModule(private val persistentScope: FragmentViewPersistentSc
                 splitFeatureInstaller,
                 isSplitFeatureModeOn
         )
+    }
+
+    @Provides
+    @PerScreen
+    internal fun providePicturePermissionChecker(permissionManager: PermissionManager): PicturePermissionChecker {
+        return PicturePermissionChecker(permissionManager)
+    }
+
+    @Provides
+    @PerScreen
+    internal fun providePictureProvider(context: Context,
+                                        activityNavigator: ActivityNavigator,
+                                        activityProvider: ActivityProvider,
+                                        ppChecker: PicturePermissionChecker): PictureProvider {
+        return PictureProvider(context, activityNavigator, activityProvider, ppChecker)
     }
 
     @Provides
