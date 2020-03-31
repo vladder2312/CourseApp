@@ -1,6 +1,12 @@
 package com.example.f_main.addMeme
 
+import android.app.Activity
+import android.content.Intent
+import android.provider.MediaStore
 import android.util.Log
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.startActivityForResult
+import androidx.core.content.ContextCompat
 import com.example.f_main.addMeme.loadImageDialog.LoadImageDialogRoute
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
@@ -31,17 +37,25 @@ class AddMemePresenter @Inject constructor(
     }
 
     fun loadFromCamera() {
-        subscribeIoHandleError(picturePermissionChecker.checkCameraStoragePermission()) {
-            if (it) {
-                subscribeIoHandleError(
-                        pictureProvider.openCameraAndTakePhoto(),
-                        { camResult ->
-                            bindModel.imageState.accept(camResult.photoUrl)
-                        },
-                        { throwable ->
-                            Timber.d(throwable.localizedMessage)
-                        })
+//        По непонятной причине этот способ не работает, поэтому использую другой
+//
+//        subscribeIoHandleError(picturePermissionChecker.checkCameraStoragePermission()) {
+//            if (it) {
+//                subscribeIoHandleError(
+//                        pictureProvider.openCameraAndTakePhoto(),
+//                        { camResult ->
+//                            bindModel.imageState.accept(camResult.photoUrl)
+//                        },
+//                        { throwable ->
+//                            Timber.d(throwable.localizedMessage)
+//                        })
+//            }
+//        }
+        subscribeIoHandleError(picturePermissionChecker.checkCameraStoragePermission()){
+            if (it){
+                bindModel.openCamera.accept()
             }
+
         }
     }
 

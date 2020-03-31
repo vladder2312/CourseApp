@@ -13,4 +13,5 @@ class AddMemeBindModel @Inject constructor() : ScreenModel() {
     val createMemeAction = Action<Unit>()
 
     val imageState = State<String>()
+    val openCamera = State<Unit>()
 }
