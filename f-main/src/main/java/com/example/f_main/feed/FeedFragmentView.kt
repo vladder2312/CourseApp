@@ -21,7 +21,6 @@ class FeedFragmentView : BaseRxFragmentView() {
 
     @Inject
     lateinit var bindModel: FeedBindModel
-
     @Inject
     lateinit var presenter: FeedPresenter
     private val adapter = EasyAdapter()

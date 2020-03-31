@@ -2,9 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ru.surfstudio.android.template.base_feature">
 
-    <!-- todo Исправить в соответствии с нуждами приложения.
-    Если приложение не использует бэкап (android:allowBackup="false"),
-    то backup_scheme не нужна -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name="ru.surfstudio.standard.application.app.App"
