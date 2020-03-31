@@ -1,6 +1,5 @@
 package com.example.f_main.feed
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,10 @@ import com.example.f_main.feed.di.FeedScreenConfigurator
 import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
 import ru.surfstudio.android.core.mvp.loadstate.LoadStateInterface
-import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.standard.domain.feed.Meme
 import javax.inject.Inject
 
-@PerScreen
 class FeedFragmentView : BaseRxFragmentView() {
 
     @Inject

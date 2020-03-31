@@ -41,7 +41,7 @@ class MainActivityView : BaseRxActivityView(), FragmentContainer {
                     bindModel.showAddMemeAction.accept()
                 }
                 R.id.action_profile -> {
-                    bindModel.showFeedAction.accept()
+                    bindModel.showProfileAction.accept()
                 }
             }
             true
