@@ -3,6 +3,7 @@ package ru.surfstudio.standard.application.app.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.i_main.AuthInteractor
+import com.example.i_main.UserRepository
 import com.example.i_memes.MemesInteractor
 import ru.surfstudio.android.activity.holder.ActiveActivityHolder
 import ru.surfstudio.android.connection.ConnectionProvider
@@ -40,4 +41,5 @@ interface AppProxyDependencies {
 
     fun authInteractor(): AuthInteractor
     fun memesInteractor(): MemesInteractor
+    fun userRepositrory(): UserRepository
 }

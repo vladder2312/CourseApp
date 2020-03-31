@@ -9,4 +9,9 @@
     <string name="create">Создать</string>
     <string name="meme_description_hint">Текст</string>
     <string name="meme_title_hint">Заголовок</string>
+    <string name="about_app">О приложении</string>
+    <string name="exit">Выход</string>
+    <string name="exit_dialog_text">Действительно хотите выйти?</string>
+    <string name="exitCAPS">ВЫЙТИ</string>
+    <string name="cancel">ОТМЕНА</string>
 </resources>

@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainToolbar"
-        style="@style/toolbar"
+        style="@style/FeedToolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/colorBackgroundLighter"

@@ -26,11 +26,11 @@ class UserRepository @Inject constructor(
         editor.apply()
     }
 
-    fun getName() : String? {
+    fun getName() : String {
         return noBackupSharedPreferences.getString("UserName", null)
     }
 
-    fun getDescription() : String? {
+    fun getDescription() : String {
         return noBackupSharedPreferences.getString("UserDescription", null)
     }
 }

@@ -5,5 +5,6 @@ dependencies {
     implementation project(":base_feature")
     implementation project(":i-network")
     implementation project(":i-memes")
+    implementation project(":i-authorization")
     implementation project(":f-meme")
 }

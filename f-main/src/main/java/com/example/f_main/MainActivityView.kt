@@ -1,5 +1,6 @@
 package com.example.f_main
 
+import android.R.attr.statusBarColor
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
@@ -41,7 +42,7 @@ class MainActivityView : BaseRxActivityView(), FragmentContainer {
                     bindModel.showAddMemeAction.accept()
                 }
                 R.id.action_profile -> {
-                    bindModel.showFeedAction.accept()
+                    bindModel.showProfileAction.accept()
                 }
             }
             true
