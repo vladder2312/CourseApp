@@ -8,6 +8,8 @@ import com.example.f_main.R
 import com.example.f_main.feed.FeedBindModel
 import com.example.f_main.feed.FeedPresenter
 import com.example.f_main.profile.di.ProfileScreenConfigurator
+import com.jakewharton.rxbinding2.view.clicks
+import kotlinx.android.synthetic.main.fragment_addmeme.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
 import javax.inject.Inject
@@ -34,14 +36,29 @@ class ProfileFragmentView : BaseRxFragmentView() {
     override fun onActivityCreated(savedInstanceState: Bundle?, viewRecreated: Boolean) {
         super.onActivityCreated(savedInstanceState, viewRecreated)
 
+        toolbarProfile.inflateMenu(R.menu.profile_menu)
         bind()
     }
 
-    private fun bind(){
+    private fun bind() {
+        toolbarProfile.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.action_about -> {
+                    true
+                }
+                R.id.action_exit -> {
+                    bindModel.openExitDialog.accept()
+                    true
+                }
+                else -> false
+            }
+        }
+
         bindModel.userDataState bindTo ::setUserData
     }
 
-    private fun setUserData(data : Pair<String,String>){
+
+    private fun setUserData(data: Pair<String, String>) {
         profile_nickname.text = data.first
         profile_description.text = data.second
     }
