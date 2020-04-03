@@ -3,6 +3,7 @@ package ru.surfstudio.standard.f_authorization
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
 import androidx.annotation.LayoutRes
 import com.example.f_main.MainActivityView
@@ -36,11 +37,12 @@ class AuthActivityView : BaseRxActivityView() {
             persistentState: PersistableBundle?,
             viewRecreated: Boolean
     ) {
+
+        initListeners()
         bind()
     }
 
-    fun bind() {
-
+    private fun bind() {
         loginText.textChanges() bindTo { bindModel.loginChangedAction.accept(loginText.text.toString()) }
         passwordText.textChanges() bindTo { bindModel.passwordChangedAction.accept(passwordText.text.toString()) }
         loginButton.clicks() bindTo {
@@ -56,25 +58,29 @@ class AuthActivityView : BaseRxActivityView() {
         }
     }
 
-    fun showLoginError(string: String) {
+    private fun initListeners(){
+        loginText.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+    }
+
+    private fun showLoginError(string: String) {
         loginLabel.text = string
     }
 
-    fun showPasswordError(string: String) {
+    private fun showPasswordError(string: String) {
         passwordLabel.text = string
     }
 
-    fun showLoading() {
+    private fun showLoading() {
         loader.visibility = View.VISIBLE
         loginButton.text = ""
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         loader.visibility = View.INVISIBLE
         loginButton.text = "Войти"
     }
 
-    fun toNextScreen(){
+    private fun toNextScreen(){
         startActivity(Intent(this, MainActivityView::class.java))
     }
 }
