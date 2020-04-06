@@ -28,7 +28,7 @@
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="17dp"
         android:text="@string/exitCAPS"
-        android:textColor="@color/colorBlue"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -41,7 +41,7 @@
         android:layout_marginEnd="17dp"
         android:layout_marginBottom="17dp"
         android:text="@string/cancel"
-        android:textColor="@color/colorBlue"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/exit_exit"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

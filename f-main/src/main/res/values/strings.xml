@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_title">Популярные мемы</string>
+    <string name="feed_title">Популярные мемы</string>
     <string name="search_hint">Поиск</string>
     <string name="load_error">Не удалось загрузить ленту\nОбновите экран или попробуйте позже.</string>
     <string name="nickname">LittleHallCat</string>
@@ -14,4 +14,5 @@
     <string name="exit_dialog_text">Действительно хотите выйти?</string>
     <string name="exitCAPS">ВЫЙТИ</string>
     <string name="cancel">ОТМЕНА</string>
+    <string name="search">Поиск</string>
 </resources>

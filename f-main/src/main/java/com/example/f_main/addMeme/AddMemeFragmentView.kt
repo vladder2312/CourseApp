@@ -2,34 +2,24 @@ package com.example.f_main.addMeme
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.f_main.R
 import com.example.f_main.addMeme.di.AddMemeScreenConfigurator
 import com.jakewharton.rxbinding2.view.clicks
-import com.jakewharton.rxbinding2.view.enabled
 import kotlinx.android.synthetic.main.fragment_addmeme.*
-import kotlinx.android.synthetic.main.fragment_feed.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
-import ru.surfstudio.android.core.mvp.fragment.BaseRenderableFragmentView
-import ru.surfstudio.android.core.mvp.presenter.CorePresenter
-import ru.surfstudio.android.easyadapter.EasyAdapter
-import ru.surfstudio.android.easyadapter.ItemList
 import ru.surfstudio.android.imageloader.ImageLoader
 import javax.inject.Inject
 
 /**
  * Вью добавления мема
  * */
+@Suppress("DEPRECATION")
 class AddMemeFragmentView : BaseRxFragmentView() {
 
     @Inject
@@ -77,7 +67,7 @@ class AddMemeFragmentView : BaseRxFragmentView() {
             addmeme_delete.visibility = View.VISIBLE
             addMeme_button.isEnabled = false
             button_create_meme.isEnabled = false
-            button_create_meme.setTextColor(resources.getColor(R.color.colorBlue))
+            button_create_meme.setTextColor(resources.getColor(R.color.colorAccent))
         }
     }
 
@@ -86,7 +76,7 @@ class AddMemeFragmentView : BaseRxFragmentView() {
         addmeme_delete.visibility = View.VISIBLE
         addMeme_button.isEnabled = false
         button_create_meme.isEnabled = false
-        button_create_meme.setTextColor(resources.getColor(R.color.colorBlue))
+        button_create_meme.setTextColor(resources.getColor(R.color.colorAccent))
     }
 
     private fun deleteImage() {
