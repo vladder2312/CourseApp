@@ -5,6 +5,9 @@ import ru.surfstudio.android.core.mvp.binding.rx.ui.BindModel
 import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
 
+/**
+ * Бинд модель главного экрана
+ * */
 @PerScreen
 class MainBindModel @Inject constructor() : BindModel {
 

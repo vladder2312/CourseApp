@@ -14,6 +14,9 @@ import ru.surfstudio.standard.ui.navigation.MainActivityRoute
 import ru.surfstudio.standard.ui.screen.ActivityScreenModule
 import ru.surfstudio.standard.ui.screen.CustomScreenModule
 
+/**
+ * Конфигуратор главного экрана
+ * */
 class MainScreenConfigurator(intent: Intent) : ActivityScreenConfigurator(intent) {
 
     @PerScreen

@@ -16,6 +16,9 @@ import ru.surfstudio.android.easyadapter.EasyAdapter
 import ru.surfstudio.standard.domain.feed.Meme
 import javax.inject.Inject
 
+/**
+ * Вью экрана с мемами
+ * */
 class FeedFragmentView : BaseRxFragmentView() {
 
     @Inject

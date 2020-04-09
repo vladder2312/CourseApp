@@ -3,7 +3,7 @@
     <item
         android:title=""
         android:id="@+id/action_feed"
-        android:icon="@drawable/feed_icon"
+        android:icon="@drawable/icon_feed"
         />
     <item
         android:title=""

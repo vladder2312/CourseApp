@@ -16,6 +16,9 @@ import ru.surfstudio.standard.ui.activity.di.FragmentScreenConfigurator
 import ru.surfstudio.standard.ui.screen.CustomScreenModule
 import ru.surfstudio.standard.ui.screen.FragmentScreenModule
 
+/**
+ * Конфигуратор экрана добавления мема
+ * */
 class AddMemeScreenConfigurator(bundle: Bundle) : FragmentScreenConfigurator(bundle) {
 
     @PerScreen
@@ -24,7 +27,7 @@ class AddMemeScreenConfigurator(bundle: Bundle) : FragmentScreenConfigurator(bun
     interface AddMemeScreenComponent : BindableScreenComponent<AddMemeFragmentView>, LoadImageDialogComponent
 
     @Module
-    internal class AddMemeScreenModule(route: AddMemeFragmentRoute) : CustomScreenModule<AddMemeFragmentRoute>(route){
+    internal class AddMemeScreenModule(route: AddMemeFragmentRoute) : CustomScreenModule<AddMemeFragmentRoute>(route) {
 
         @Provides
         @PerScreen
