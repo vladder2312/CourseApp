@@ -7,7 +7,7 @@ import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
 
 /**
- * Модель экрана профиля
+ * Бинд модель экрана профиля
  * */
 @PerScreen
 class ProfileBindModel @Inject constructor() : BindModel {

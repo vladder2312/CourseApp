@@ -6,6 +6,9 @@ import ru.surfstudio.android.core.mvp.model.ScreenModel
 import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
 
+/**
+ * Бинд модель экрана добавления мема
+ * */
 @PerScreen
 class AddMemeBindModel @Inject constructor() : ScreenModel() {
 

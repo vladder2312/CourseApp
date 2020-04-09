@@ -9,9 +9,13 @@ import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.standard.domain.feed.Meme
 import ru.surfstudio.standard.ui.navigation.ShareRoute
 import ru.surfstudio.standard.ui.placeholder.LoadState
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+/**
+ * Презентер экрана с мемами
+ * */
 @PerScreen
 class FeedPresenter @Inject constructor(
         private val bindModel: FeedBindModel,
@@ -19,6 +23,8 @@ class FeedPresenter @Inject constructor(
         private val activityNavigator: ActivityNavigator,
         basePresenterDependency: BasePresenterDependency
 ) : BaseRxPresenter(basePresenterDependency) {
+
+    lateinit var memes: List<Meme>
 
     override fun onLoad(viewRecreated: Boolean) {
         super.onLoad(viewRecreated)
@@ -28,13 +34,17 @@ class FeedPresenter @Inject constructor(
         bindModel.refreshFeedAction bindTo ::loadMemes
         bindModel.shareMemeAction bindTo ::shareMeme
         bindModel.openMemeAction bindTo { openMeme(it) }
+        bindModel.hideMemesAction bindTo { bindModel.memesState.accept(listOf()) }
+        bindModel.showMemesAction bindTo { bindModel.memesState.accept(memes) }
+        bindModel.filterMemesAction bindTo { filterMemes(it) }
     }
 
     private fun loadMemes() {
         subscribeIoHandleError(
                 memesInteractor.getMemes().timeout(8, TimeUnit.SECONDS),
                 {
-                    bindModel.memesState.accept(it)
+                    memes = it
+                    bindModel.memesState.accept(memes)
                     bindModel.placeholderState.accept(LoadState.NONE)
                 },
                 {
@@ -42,6 +52,13 @@ class FeedPresenter @Inject constructor(
                     bindModel.placeholderState.accept(LoadState.ERROR)
                 }
         )
+    }
+
+    private fun filterMemes(text: String) {
+        val filteredMemes = memes.filter {
+            it.title.toLowerCase(Locale.getDefault()).contains(text.trim().toLowerCase(Locale.getDefault()))
+        }
+        bindModel.memesState.accept(filteredMemes)
     }
 
     private fun openMeme(meme: Meme) = activityNavigator.start(MemeActivityRoute(meme))

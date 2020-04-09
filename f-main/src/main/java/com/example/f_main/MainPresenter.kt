@@ -10,6 +10,9 @@ import ru.surfstudio.android.core.ui.navigation.fragment.FragmentNavigator
 import ru.surfstudio.android.dagger.scope.PerScreen
 import javax.inject.Inject
 
+/**
+ * Презентер главного экрана
+ * */
 @PerScreen
 class MainPresenter @Inject constructor(
         private val bindModel: MainBindModel,
@@ -25,15 +28,15 @@ class MainPresenter @Inject constructor(
         bindModel.showProfileAction bindTo ::changeToProfileFragment
     }
 
-    private fun changeToFeedFragment(){
-        fragmentNavigator.replace(FeedFragmentRoute(),false, TRANSIT_NONE )
+    private fun changeToFeedFragment() {
+        fragmentNavigator.replace(FeedFragmentRoute(), false, TRANSIT_NONE)
     }
 
-    private fun changeToAddMemeFragment(){
+    private fun changeToAddMemeFragment() {
         fragmentNavigator.replace(AddMemeFragmentRoute(), false, TRANSIT_NONE)
     }
 
-    private fun changeToProfileFragment(){
+    private fun changeToProfileFragment() {
         fragmentNavigator.replace(ProfileFragmentRoute(), false, TRANSIT_NONE)
     }
 }
