@@ -12,6 +12,10 @@ import javax.inject.Inject
 @PerScreen
 class AddMemeBindModel @Inject constructor() : ScreenModel() {
 
+    lateinit var title : String
+    lateinit var description : String
+    lateinit var photoUri : String
+
     val loadImageAction = Action<Unit>()
     val createMemeAction = Action<Unit>()
 
