@@ -85,7 +85,7 @@ class FeedFragmentView : BaseRxFragmentView() {
             bindModel.showMemesAction.accept()
             false
         }
-        swipeRefresh.setOnRefreshListener {
+        feed_swipe_refresh.setOnRefreshListener {
             bindModel.refreshFeedAction.accept()
         }
     }
@@ -104,7 +104,7 @@ class FeedFragmentView : BaseRxFragmentView() {
 
     private fun setMemes(memes: List<Meme>) {
         adapter.setData(memes, feedController)
-        swipeRefresh.isRefreshing = false
+        feed_swipe_refresh.isRefreshing = false
     }
 
     private fun setLoadingState(state: LoadStateInterface) {
