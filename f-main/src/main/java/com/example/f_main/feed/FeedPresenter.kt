@@ -32,7 +32,7 @@ class FeedPresenter @Inject constructor(
         bindModel.placeholderState.accept(LoadState.TRANSPARENT_LOADING)
 
         bindModel.refreshFeedAction bindTo ::loadMemes
-        bindModel.shareMemeAction bindTo ::shareMeme
+        bindModel.shareMemeAction bindTo { shareMeme(it) }
         bindModel.openMemeAction bindTo { openMeme(it) }
         bindModel.hideMemesAction bindTo { bindModel.memesState.accept(listOf()) }
         bindModel.showMemesAction bindTo { bindModel.memesState.accept(memes) }
