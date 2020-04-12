@@ -8,7 +8,8 @@ import javax.inject.Inject
 
 @PerApplication
 class MemesRepository @Inject constructor(
-        private val memesApi: MemesApi
+        private val memesApi: MemesApi,
+        private val memesStorageWrapper: MemesStorageWrapper
 ) : BaseNetworkService() {
 
     fun getMemes() : Single<List<Meme>> =
@@ -17,4 +18,12 @@ class MemesRepository @Inject constructor(
                     it.transform()
                 }
             }
+
+    fun saveMemeToStorage(key: String, meme: Meme) = memesStorageWrapper.saveMeme(key, meme)
+
+    fun getMemesFromStorage() = memesStorageWrapper.getMemes()
+
+    fun getMemeFromStorage(key: String) = memesStorageWrapper.getMeme(key)
+
+    fun clearMemesStorage() = memesStorageWrapper.clear()
 }

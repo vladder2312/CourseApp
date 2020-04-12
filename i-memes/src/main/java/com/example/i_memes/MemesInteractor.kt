@@ -13,4 +13,12 @@ class MemesInteractor @Inject constructor(
     fun getMemes() : Single<List<Meme>> {
         return memesRepository.getMemes()
     }
+
+    fun saveMemeToStorage(key: String, meme: Meme) = memesRepository.saveMemeToStorage(key, meme)
+
+    fun getMemesFromStorage() = memesRepository.getMemesFromStorage()
+
+    fun getMemeFromStorage(key: String) = memesRepository.getMemeFromStorage(key)
+
+    fun clearMemesStorage() = memesRepository.clearMemesStorage()
 }

@@ -1,20 +1,15 @@
 package com.example.f_main.addMeme
 
-import android.app.Activity
-import android.content.Intent
-import android.provider.MediaStore
 import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat
 import com.example.f_main.addMeme.loadImageDialog.LoadImageDialogRoute
+import com.example.i_memes.MemesInteractor
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxPresenter
 import ru.surfstudio.android.core.mvp.presenter.BasePresenterDependency
 import ru.surfstudio.android.dagger.scope.PerScreen
 import ru.surfstudio.android.mvp.dialog.navigation.navigator.DialogNavigator
 import ru.surfstudio.android.picturechooser.PicturePermissionChecker
 import ru.surfstudio.android.picturechooser.PictureProvider
-import timber.log.Timber
+import ru.surfstudio.standard.domain.feed.Meme
 import javax.inject.Inject
 
 /**
@@ -26,6 +21,7 @@ class AddMemePresenter @Inject constructor(
         private val dialogNavigator: DialogNavigator,
         private val pictureProvider: PictureProvider,
         private val picturePermissionChecker: PicturePermissionChecker,
+        private val memesInteractor: MemesInteractor,
         basePresenterDependency: BasePresenterDependency
 ) : BaseRxPresenter(basePresenterDependency) {
 
@@ -51,8 +47,8 @@ class AddMemePresenter @Inject constructor(
 //                        })
 //            }
 //        }
-        subscribeIoHandleError(picturePermissionChecker.checkCameraStoragePermission()){
-            if (it){
+        subscribeIoHandleError(picturePermissionChecker.checkCameraStoragePermission()) {
+            if (it) {
                 bindModel.openCamera.accept()
             }
 
@@ -72,6 +68,16 @@ class AddMemePresenter @Inject constructor(
     }
 
     private fun saveMeme() {
-
+        val key = System.currentTimeMillis().toString()
+        memesInteractor.saveMemeToStorage(key,
+                Meme(
+                        key,
+                        System.currentTimeMillis(),
+                        bindModel.description,
+                        false,
+                        bindModel.photoUri,
+                        bindModel.title
+                )
+        )
     }
 }

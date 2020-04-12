@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.example.f_main.R
 import com.example.f_main.addMeme.di.AddMemeScreenConfigurator
 import com.jakewharton.rxbinding2.view.clicks
+import com.jakewharton.rxbinding2.widget.textChanges
 import kotlinx.android.synthetic.main.fragment_addmeme.*
 import ru.surfstudio.android.core.mvp.binding.rx.ui.BaseRxFragmentView
 import ru.surfstudio.android.imageloader.ImageLoader
@@ -24,6 +25,7 @@ class AddMemeFragmentView : BaseRxFragmentView() {
 
     @Inject
     lateinit var bindModel: AddMemeBindModel
+
     @Inject
     lateinit var presenter: AddMemePresenter
     private val REQUEST_CAMERA = 22
@@ -44,13 +46,15 @@ class AddMemeFragmentView : BaseRxFragmentView() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(resultCode==RESULT_OK && requestCode==REQUEST_CAMERA){
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CAMERA) {
             val photo = data?.extras?.get("data") as Bitmap
             setImage(photo)
         }
     }
 
     private fun bind() {
+        addMeme_title.textChanges() bindTo { bindModel.title = addMeme_title.text.toString() }
+        addMeme_text.textChanges() bindTo { bindModel.description = addMeme_text.text.toString() }
         addMeme_button.clicks() bindTo { bindModel.loadImageAction.accept() }
         button_create_meme.clicks() bindTo { bindModel.createMemeAction.accept() }
         addmeme_delete.clicks() bindTo { deleteImage() }
@@ -59,23 +63,24 @@ class AddMemeFragmentView : BaseRxFragmentView() {
         bindModel.openCamera bindTo ::openCamera
     }
 
-    private fun setImage(url: String) {
+    private fun setImage(uri: String) {
+        bindModel.photoUri = uri
         context?.let {
             ImageLoader.with(it)
-                    .url(url)
+                    .url(uri)
                     .into(addMeme_image)
             addmeme_delete.visibility = View.VISIBLE
             addMeme_button.isEnabled = false
-            button_create_meme.isEnabled = false
+            button_create_meme.isEnabled = true
             button_create_meme.setTextColor(resources.getColor(R.color.colorAccent))
         }
     }
 
-    private fun setImage(photo : Bitmap) {
+    private fun setImage(photo: Bitmap) {
         addMeme_image.setImageBitmap(photo)
         addmeme_delete.visibility = View.VISIBLE
         addMeme_button.isEnabled = false
-        button_create_meme.isEnabled = false
+        button_create_meme.isEnabled = true
         button_create_meme.setTextColor(resources.getColor(R.color.colorAccent))
     }
 
